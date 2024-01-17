@@ -98,85 +98,64 @@ class Player:
         self.x += dx
         self.y += dy
 
-
-
-class Glass:
-    def __init__(self, capacity_volume: Union[int, float], occupied_volume: Union[int, float]):
+class Student:
+    def __init__(self, year: int, university: str, number_debts: int):
         """
-        Создание и подготовка к работе объекта "Стакан"
+        Создание и подготовка к работе объекта "Студент"
 
-        :param capacity_volume: Объем стакана
-        :param occupied_volume: Объем занимаемой жидкости
+        :param year: Год выпуска
+        :param university: название университета
+        :param number_subjects: кол-во долгов
 
         Примеры:
-        >>> glass = Glass(500, 10)  # инициализация экземпляра класса
+        >>> student = Student(2025, 'SPBPU', 2) #инициализация экземпляра класса
         """
-        if not isinstance(capacity_volume, (int, float)):
-            raise TypeError("Объем стакана должен быть типа int или float")
-        if capacity_volume <= 0:
-            raise ValueError("Объем стакана должен быть положительным числом")
-        self.capacity_volume = capacity_volume
-        if not isinstance(occupied_volume, (int, float)):
-            raise TypeError("Занятый объем должен быть типа int или float")
-        if occupied_volume < 0:
-            raise ValueError("Занятый объем стакана должен быть положительным числом")
-        self.occupied_volume = occupied_volume
+        if not isinstance(year, int):
+            raise TypeError("Год выпуска должен быть типом int")
+        if year < 1993:
+            raise TypeError("Год выпуска должен быть >= 1993")
+        self.year = year
+        if not isinstance(university, str):
+            raise TypeError("Название университета должно быть типа str")
+        self.university = university
+        if not isinstance(number_debts, int):
+            raise TypeError("Кол-во долгов должно быть типом int")
+        if number_debts < 0:
+            raise TypeError("Кол-во долгов должно быть неотрицательно")
+        self.number_debts = number_debts
 
-    def is_empty_glass(self) -> bool:
+    def add_year(self) -> int:
         """
-        Функция которая проверяет является ли стакан пустым
+        Функция, которая добавляет 1 к году выпуска (если например был взят академический отпуск)
 
-        :return: Является ли стакан пустым
+        :return: текущий год выпуска
 
         Примеры:
-        >>> glass = Glass(500, 10)
-        >>> glass.is_empty_glass()
+        >>> student = Student(2025, 'MSU', 1)
+        >>> student.add_year()
         """
+        self.year += 1
+    def is_study(self) -> bool:
+        """
+        Функция, которая выясняет учится ли сейчас студент
 
-        def add_water_to_glass(self, water: float) -> None:
-            """
-            Добавление воды в стакан.
-            :param water: Объем добавляемой жидкости
+        :return: true или false
 
-            :raise ValueError: Если количество добавляемой жидкости превышает свободное место в стакане, то вызываем ошибку
-
-            Примеры:
-            >>> glass = Glass(500, 0)
-            >>> glass.add_water_to_glass(200)
-            """
-            if not isinstance(water, (int, float)):
-                raise TypeError("Добавляемая жидкость должна быть типа int или float")
-            if water < 0:
-                raise ValueError("Добавляемая жидкость должна положительным числом")
-            ...
-
-        def remove_water_from_glass(self, estimate_water: float) -> None:
-            """
-            Извлечение воды из стакана.
-
-            :param estimate_water: Объем извлекаемой жидкости
-            :raise ValueError: Если количество извлекаемой жидкости превышает количество воды в стакане,
-            то возвращается ошибка.
-
-            :return: Объем реально извлеченной жидкости
-
-            Примеры:
-            >>> glass = Glass(500, 500)
-            >>> glass.remove_water_from_glass(200)
-            """
-            ...
-            # TODO инициализировать объект "Стакан"
+        Примеры:
+        >>> student = Student(2025, 'MSU', 1)
+        >>> student.is_study()
+        """
 
 
 
 if __name__ == "__main__":
     doctest.testmod()
     ...  # TODO инициализировать два объекта типа Glass
-    glass1 = Glass(300, 0)
-    glass2 = Glass(200, 100)
+    student = Student(2026, 'MSU', 1)
+    student = Student(2013, 'HSE', 0)
     # TODO попробовать инициализировать не корректные объекты
-    glass3 = Glass(-50, 0)
-    glass4 = Glass(100, -1)
+    #student = Student(12, 'SPBSTU', 2)
+    #student = Student(2020, 'ITMO', -1)
 
     player1 = Player(300, 0, 0)
     player2 = Player(0, 10, -25.5)
