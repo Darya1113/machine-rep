@@ -50,7 +50,7 @@ class Car:
 class Player:
     def __init__(self, score: int, x: Union[int, float], y: Union[int, float]):
         """
-        Создание и подготовка к работе объекта "Стакан"
+        Создание и подготовка к работе объекта "Игрок"
 
         :param score: Счёт в игре
         :param x: Координата по x
